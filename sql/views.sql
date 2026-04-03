@@ -55,7 +55,7 @@ FROM sp500_index;
 
 -- 4. Stock performance: yearly return per stock with sector info
 CREATE OR REPLACE VIEW vw_stock_yearly_performance AS
-SELECT
+SELECT DISTINCT
     s.symbol,
     c.shortname,
     c.sector,
