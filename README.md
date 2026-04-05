@@ -12,7 +12,7 @@ Live on Tableau Public:
 | 2 | [Market Cap by Company](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/MarketCapbyCompany?publish=yes) | Treemap of top companies by market cap |
 | 3 | [Historical Performance](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/SP500HistoricalPerformance?publish=yes) | S&P 500 index time series with COVID crash annotation |
 | 4 | [Sector Returns Heatmap](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/SectorReturnsHeatmap?publish=yes) | Yearly return % per sector from 2010–2024 |
-| 5 | [52-Week Price Range](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/52-WeekPriceRange?publish=yes) | Dot plot showing each stock's position within its 52-week high/low range |
+| 5 | [52-Week Price Range](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/52-WeekPriceRange?publish=yes) | Gantt bar showing each stock's 52-week high/low range with a dot marking the current price |
 
 ## Stack
 
