@@ -14,6 +14,7 @@ VIEWS = [
     "vw_index_timeseries",
     "vw_stock_yearly_performance",
     "vw_stock_snapshot",
+    "vw_stock_volatility"
 ]
 
 

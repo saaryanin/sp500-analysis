@@ -92,3 +92,35 @@ FROM stocks s
 JOIN companies c ON s.symbol = c.symbol
 WHERE s.date >= (SELECT MAX(date) - INTERVAL '52 weeks' FROM stocks)
 GROUP BY s.symbol, c.shortname, c.sector, c.currentprice, c.marketcap, c.weight;
+
+-- 6. Volatility analysis: avg daily return and annualized volatility per stock
+CREATE OR REPLACE VIEW vw_stock_volatility AS
+WITH daily_returns AS (
+    SELECT
+        s.symbol,
+        c.shortname,
+        c.sector,
+        c.industry,
+        c.marketcap,
+        s.date,
+        ROUND(
+            (LN(s.close / NULLIF(LAG(s.close) OVER (PARTITION BY s.symbol ORDER BY s.date), 0)) * 100)::NUMERIC
+        , 4) AS daily_return_pct
+    FROM stocks s
+    JOIN companies c ON s.symbol = c.symbol
+    WHERE s.close IS NOT NULL AND s.close > 0
+)
+SELECT
+    symbol,
+    shortname,
+    sector,
+    industry,
+    marketcap,
+    ROUND(AVG(daily_return_pct)::NUMERIC, 4)                          AS avg_daily_return,
+    ROUND(STDDEV(daily_return_pct)::NUMERIC, 4)                       AS daily_volatility,
+    ROUND((STDDEV(daily_return_pct) * SQRT(252))::NUMERIC, 4)         AS annualized_volatility,
+    ROUND((AVG(daily_return_pct) * 252)::NUMERIC, 4)                  AS annualized_return,
+    COUNT(*)                                                           AS trading_days
+FROM daily_returns
+WHERE daily_return_pct IS NOT NULL
+GROUP BY symbol, shortname, sector, industry, marketcap;

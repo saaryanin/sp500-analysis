@@ -13,6 +13,7 @@ Live on Tableau Public:
 | 3 | [Historical Performance](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/SP500HistoricalPerformance?publish=yes) | S&P 500 index time series with COVID crash annotation |
 | 4 | [Sector Returns Heatmap](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/SectorReturnsHeatmap?publish=yes) | Yearly return % per sector from 2010–2024 |
 | 5 | [52-Week Price Range](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/52-WeekPriceRange?publish=yes) | Gantt bar showing each stock's 52-week high/low range with a dot marking the current price |
+| 6 | [Risk vs. Return (2010–2024)](https://public.tableau.com/app/profile/saar.yanin/viz/tableau_dashboards/Riskvs_Return20102024_?publish=yes) | Scatter plot of annualized return vs. volatility per stock, sized by market cap and colored by sector |
 
 ## Stack
 
@@ -52,19 +53,32 @@ sp500-analysis/
    DB_URL=postgresql://user:password@localhost:5432/sp500
    ```
 
-2. Install dependencies:
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+   On Windows:
+   ```bash
+   venv\Scripts\activate
+   ```
+   On macOS/Linux:
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Load the data:
+4. Load the data:
    ```bash
    python src/load_data.py
    ```
 
-4. Apply the schema and views from `sql/schema.sql` and `sql/views.sql` in your SQL client.
+5. Apply the schema and views from `sql/schema.sql` and `sql/views.sql` in your SQL client.
 
-5. Export views to CSV for Tableau:
+6. Export views to CSV for Tableau:
    ```bash
    python src/export_views.py
    ```
